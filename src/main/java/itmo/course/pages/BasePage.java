@@ -1,15 +1,14 @@
 package itmo.course.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import itmo.course.utils.HumanInteraction;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
+abstract class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected JavascriptExecutor js;
@@ -38,34 +37,44 @@ public class BasePage {
         return element;
     }
 
+    private void scrollToElement(WebElement element) {
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void openUrl(String url) {
+        driver.get(url);
+    }
+
     public void scrollToBottom() {
         js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        pauseForAnimation();
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
     }
 
     public void scrollToTop() {
         js.executeScript("window.scrollTo(0, 0)");
-        pauseForAnimation();
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
     }
 
-    private void scrollToElement(WebElement element) {
-        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
-        pauseForAnimation();
-    }
-
-    protected void pauseForAnimation() {
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+    public void performHumanScroll() {
+        Actions actions = new Actions(driver);
+        for (int i = 0; i < 3; i++) {
+            actions.scrollByAmount(0, 300).perform();
+            HumanInteraction.randomDelay(400, 800);
         }
     }
 
-    protected boolean isElementVisible(String xpath) {
-        try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))) != null;
-        } catch (Exception e) {
-            return false;
+    private void clickWithRetry(String xpath, int maxAttempts) {
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            try {
+                WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+                scrollToElement(element);
+                element.click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                if (attempt == maxAttempts) throw e;
+                HumanInteraction.randomDelay(500, 1000);
+            }
         }
     }
 }
