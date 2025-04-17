@@ -14,12 +14,12 @@ import java.util.Collections;
 import java.util.Map;
 
 public class DriverManager {
-    private static WebDriver fireFoxWebDriver;
-    private static WebDriver chromeWebDriver;
+    private WebDriver fireFoxWebDriver;
+    private WebDriver chromeWebDriver;
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
             "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
-    public static void initDrivers(String[] mode) {
+    public void initDrivers(String[] mode) {
         for(var browser : mode) {
             switch (browser) {
                 case "chrome" -> createChromeDriver();
@@ -33,7 +33,7 @@ public class DriverManager {
         }
     }
 
-    private static void createChromeDriver() {
+    private void createChromeDriver() {
         try {
             WebDriverManager.chromedriver().clearDriverCache().setup();
 
@@ -56,7 +56,7 @@ public class DriverManager {
         }
     }
 
-    private static void createFirefoxDriver() {
+    private void createFirefoxDriver() {
         try {
             WebDriverManager.firefoxdriver().clearDriverCache().setup();
 
@@ -71,15 +71,15 @@ public class DriverManager {
         }
     }
 
-    private static void configureDriver(WebDriver driver) {
-        driver.manage().window().setSize(new Dimension(1280, 900));
+    private void configureDriver(WebDriver driver) {
+        driver.manage().window().setSize(new Dimension(1280, 850));
         driver.manage().timeouts()
-                .pageLoadTimeout(Duration.ofSeconds(25))
+                .pageLoadTimeout(Duration.ofSeconds(10))
                 .implicitlyWait(Duration.ofSeconds(3));
         driver.manage().deleteAllCookies();
     }
 
-    private static void stealthChrome(WebDriver driver) {
+    private void stealthChrome(WebDriver driver) {
         ((ChromeDriver) driver).executeCdpCommand(
                 "Page.addScriptToEvaluateOnNewDocument",
                 Map.of("source",
@@ -87,22 +87,22 @@ public class DriverManager {
         );
     }
 
-    public static WebDriver getChromeWebDriver() {
+    public WebDriver getChromeWebDriver() {
         if (chromeWebDriver == null) createChromeDriver();
         return chromeWebDriver;
     }
 
-    public static WebDriver getFireFoxWebDriver() {
+    public WebDriver getFireFoxWebDriver() {
         if (fireFoxWebDriver == null) createFirefoxDriver();
         return fireFoxWebDriver;
     }
 
-    public static void resetDrivers() {
+    public void resetDrivers() {
         performCleanup(chromeWebDriver);
         performCleanup(fireFoxWebDriver);
     }
 
-    private static void performCleanup(WebDriver driver) {
+    private void performCleanup(WebDriver driver) {
         if (driver != null) {
             driver.manage().deleteAllCookies();
             driver.close();

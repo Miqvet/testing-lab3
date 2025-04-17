@@ -23,7 +23,7 @@ abstract class BasePage {
         driver.manage().window().setSize(new org.openqa.selenium.Dimension(width, height));
     }
 
-    protected WebElement waitAndClick(String xpath) {
+    public WebElement waitAndClick(String xpath) {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         scrollToElement(element);
         element.click();

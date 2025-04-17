@@ -13,8 +13,6 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.16.1</selenium.version>
-        <junit.version>5.11.4</junit.version>
-        <webdrivermanager.version>5.6.3</webdrivermanager.version>
     </properties>
 
     <dependencies>
@@ -50,7 +48,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
+            <version>5.6.4</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
