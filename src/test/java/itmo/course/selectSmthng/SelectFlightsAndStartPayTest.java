@@ -75,7 +75,6 @@ public class SelectFlightsAndStartPayTest {
         HumanInteraction.randomDelay(3000, 4000);
         page.disableCookie();
         page.clickFindButton();
-
         driver.close();
     }
 

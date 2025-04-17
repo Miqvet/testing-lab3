@@ -20,9 +20,7 @@ public class SelectTourAndStartPayTest {
     private static final String SELECT_TARGET_TIME = "/html/body/div[3]/div/div/div/div[1]/div[2]/div[1]/table/tbody/tr[4]/td[7]";
     private static final String STAGE_1_FINISH_BUTTON = "/html/body/div[1]/div/div[1]/div[1]/div/div[1]/div/form/button";
 
-    private static final String TARGET_URL_STAGE_3 = "";
-    private static final String TARGET_URL_STAGE_2 = "";
-    private static final String TARGET_URL_STAGE_1 = "https://www.ozon.ru/travel/tours/";
+    private static final String TARGET_URL_STAGE_2 = "https://www.ozon.ru/travel/tours/";
     private static final String[] BROWSERS = {"chrome"};
 
     static Stream<Arguments> browsersProvider() {
@@ -44,7 +42,7 @@ public class SelectTourAndStartPayTest {
 
         WebDriver driver = getDriver(browser, driverManager);
         ContentPage page = new ContentPage(driver);
-        page.openUrl(TARGET_URL_STAGE_1);
+        page.openUrl(TARGET_URL_STAGE_2);
         if (page.isPageBlocked()) {
             throw new BlockedException("Access blocked");
         }

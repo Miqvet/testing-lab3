@@ -2,14 +2,18 @@ package itmo.course.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.io.File;
 import java.time.Duration;
 
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+
 import java.util.Collections;
 import java.util.Map;
 
@@ -60,22 +64,42 @@ public class DriverManager {
         try {
             WebDriverManager.firefoxdriver().clearDriverCache().setup();
 
+//            FirefoxProfile profile = new FirefoxProfile();
+//            profile.setPreference("general.useragent.override", USER_AGENT);
+//            profile.setPreference("dom.webdriver.enabled", false);
+//            profile.setPreference("useAutomationExtension", false);
+//            profile.setPreference("webdriver.load.strategy", "unstable");
+//
+//            FirefoxOptions options = new FirefoxOptions();
+//            options.setProfile(profile);
+//            options.setCapability("moz:webdriverClick", false);
+            String profilePath = "C:/Users/nik31/AppData/Roaming/Mozilla/Firefox/Profiles/1weqlnl7.default-release";
+
+            // Загружаем профиль
+            FirefoxProfile profile = new FirefoxProfile(new File(profilePath));
+
+            // Опции браузера
             FirefoxOptions options = new FirefoxOptions();
-            options.addPreference("general.useragent.override", USER_AGENT);
-            options.addPreference("dom.webdriver.enabled", false);
+            options.setProfile(profile);
 
             fireFoxWebDriver = new FirefoxDriver(options);
+
+            ((JavascriptExecutor) fireFoxWebDriver).executeScript(
+                    "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+            );
+
             configureDriver(fireFoxWebDriver);
         } catch (Exception e) {
             System.err.println("[Firefox] Initialization error: " + e.getMessage());
         }
     }
 
+
     private void configureDriver(WebDriver driver) {
         driver.manage().window().setSize(new Dimension(1280, 850));
         driver.manage().timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(10))
-                .implicitlyWait(Duration.ofSeconds(3));
+                .implicitlyWait(Duration.ofSeconds(10));
         driver.manage().deleteAllCookies();
     }
 

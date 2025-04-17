@@ -14,7 +14,6 @@ import java.util.stream.Stream;
 
 class LoadTabsTest {
     private static final String TARGET_URL = "https://www.ozon.ru/travel/";
-    private static final int MAX_RETRIES = 2;
     private static final String[] BROWSERS = {"chrome"};
 
     static Stream<Arguments> browsersProvider() {
