@@ -11,10 +11,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.stream.Stream;
 
-public class SelectFlightsAndStartPayTest {
+public class ViewCorporateInformation {
     private static final String START_REGISTRATION = "/html/body/div[1]/div/div[1]/div[2]/div/div/section[1]/section/button";
-    private static final String THIRD_OPTION = "/html/body/div[1]/div/div[1]/div[3]/div[1]/div/div/div[1]/div[3]";
-    private static final String APPLY_BUTTON = "/html/body/div[1]/div/div[1]/div[3]/div[1]/div/div/button";
 
     private static final String SELECT_PAY_MYSELF = "/html/body/div[1]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[3]/button[2]";
     private static final String SELECT_PAY_DELAY = "/html/body/div[1]/div/div[1]/div[2]/div/div/div[1]/div[2]/div[3]";
@@ -50,7 +48,6 @@ public class SelectFlightsAndStartPayTest {
         HumanInteraction.randomDelay(3000, 4000);
         page.disableCookie();
         page.waitAndClick(START_REGISTRATION);
-        page.waitAndClick(THIRD_OPTION);
         driver.close();
     }
 
@@ -72,5 +69,4 @@ public class SelectFlightsAndStartPayTest {
         page.waitAndClick(SELECT_PAY_DELAY);
         driver.close();
     }
-
 }

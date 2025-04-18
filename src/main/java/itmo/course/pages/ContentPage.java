@@ -13,20 +13,27 @@ import org.openqa.selenium.*;
 public class ContentPage extends BasePage {
     private static final String COOKIE_BUTTON = "/html/body/div[1]/div/div[2]/div/div/div/div/button";
 
-    private static final String FLIGHTS_FIND_BUTTOn = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[1]/div[2]/button";
+    private static final String FLIGHTS_FIND_BUTTOn = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[1]/div[2]/button";
 
-    private static final String HOTELS_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[6]/div/a[2]";
-    private static final String TRAIN_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[6]/div/a[3]";
-    private static final String TOURS_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[6]/div/a[4]";
+    private static final String HOTELS_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[6]/div/a[2]/div[1]";
+    private static final String TRAIN_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[6]/div/a[3]/div[1]";
+    private static final String TOURS_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[6]/div/a[4]/div[1]";
     private static final String FLIGHTS_BUTTON = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[6]/div/a[1]";
 
     private static final String BLOCKED_HEADER_XPATH = "//h1[contains(normalize-space(), 'Доступ ограничен')]";
 
-    private static final String FROM_INPUT = "/html//div[1]/div[1]/div[1]/div/div[1]/div[2]/div[8]//input[1]";
-    private static final String SELECT_FROM_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[1]/div/div[1]/div/div";
-    private static final String SELECT_TO_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[2]/div/div[1]/div/div/div[2]/div[2]";
-    private static final String SELECT_DEPARTURE_DATE = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[3]/td[3]";
-    private static final String SELECT_TO_DATE_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[3]/td[3]";
+//    private static final String FROM_INPUT = "/html//div[1]/div[1]/div[1]/div/div[1]/div[2]/div[8]//input[1]";
+//    private static final String SELECT_FROM_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[1]/div/div[1]/div/div";
+//    private static final String SELECT_TO_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[2]/div/div[1]/div/div/div[2]/div[2]";
+//    private static final String SELECT_DEPARTURE_DATE = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[3]/td[3]";
+//    private static final String SELECT_TO_DATE_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[2]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[3]/td[3]";
+
+    private static final String FROM_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[1]/div[1]/div[1]/div/div/div/div[2]/input";
+    private static final String SELECT_FROM_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[2]/div[1]/div[1]/div/div[1]/div/div/div[2]/div[2]/div[2]";
+    private static final String SELECT_TO_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[2]/div[1]/div[2]/div/div[1]/div/div/div[2]/div[2]/div[2]/div";
+    private static final String SELECT_DEPARTURE_DATE = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[4]/td[1]";
+    private static final String SELECT_TO_DATE_INPUT = "/html/body/div[1]/div/div[1]/div/div/div[1]/div[3]/div[8]/div[2]/div[1]/div[3]/div/div[1]/div/div[2]/div[1]/div/div/div/div[2]/table/tbody/tr[4]/td[1]";
+
 
     public ContentPage(WebDriver driver) {
         super(driver);
@@ -52,10 +59,6 @@ public class ContentPage extends BasePage {
 
     public void clickToursTab() {
         waitAndClick(TOURS_BUTTON);
-    }
-
-    public void clickFlightsTab() {
-        waitAndClick(FLIGHTS_BUTTON);
     }
 
     //выбор билета

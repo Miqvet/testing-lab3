@@ -38,8 +38,8 @@ public class SelectTourAndStartPayTest {
     @ParameterizedTest
     @MethodSource("browsersProvider")
     void selectTourStage1Test(String browser) {
+        // Тоже работает
         var driverManager = new DriverManager();
-
         WebDriver driver = getDriver(browser, driverManager);
         ContentPage page = new ContentPage(driver);
         page.openUrl(TARGET_URL_STAGE_2);
@@ -57,5 +57,7 @@ public class SelectTourAndStartPayTest {
         page.waitAndClick(STAGE_1_FINISH_BUTTON);
 
         HumanInteraction.randomDelay(3000, 4000);
+
+        driver.close();
     }
 }

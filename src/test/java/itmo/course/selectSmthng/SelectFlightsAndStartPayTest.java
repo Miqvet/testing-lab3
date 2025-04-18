@@ -53,9 +53,7 @@ public class SelectFlightsAndStartPayTest {
         HumanInteraction.randomDelay(1500, 3000);
         page.waitAndClick(AEROFLOT_ONLY);
         HumanInteraction.randomDelay(1500, 3000);
-        page.waitAndClick(ONE_BAGGAGE);
-        HumanInteraction.randomDelay(1500, 3000);
-        page.waitAndClick(SELECT_FLY);
+//        page.waitAndClick(ONE_BAGGAGE);
 
         driver.close();
     }

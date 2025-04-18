@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.stream.Stream;
 
 public class SelectHouseTest {
+    //Тут работает
     private static final String SELECT_TOWN = "/html/body/div[1]/div/div[1]/div[1]/div/div/div/div[7]/div/div[1]/div[1]/div/div/div/div[2]/input ";
     private static final String SELECT_CURR_TOWN = "/html/body/div[1]/div/div[1]/div[1]/div/div/div/div[7]/div[2]/div[1]/div[1]/div/div[1]/div/div/div[2]/div[2]";
     private static final String SELECT_DATE = "/html/body/div[1]/div/div[1]/div[1]/div/div/div/div[7]/div[2]/div[1]/div[2]/div/div[1]/div/div[2]/div/div/div/div[2]/div[1]/table/tbody/tr[4]/td[4]";

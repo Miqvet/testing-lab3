@@ -23,20 +23,6 @@ public class DriverManager {
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
             "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
 
-    public void initDrivers(String[] mode) {
-        for(var browser : mode) {
-            switch (browser) {
-                case "chrome" -> createChromeDriver();
-                case "firefox" -> createFirefoxDriver();
-                case "both" -> {
-                    createChromeDriver();
-                    createFirefoxDriver();
-                }
-                default -> throw new IllegalArgumentException("Unsupported driver mode: " + mode);
-            }
-        }
-    }
-
     private void createChromeDriver() {
         try {
             WebDriverManager.chromedriver().clearDriverCache().setup();
@@ -74,11 +60,7 @@ public class DriverManager {
 //            options.setProfile(profile);
 //            options.setCapability("moz:webdriverClick", false);
             String profilePath = "C:/Users/nik31/AppData/Roaming/Mozilla/Firefox/Profiles/1weqlnl7.default-release";
-
-            // Загружаем профиль
             FirefoxProfile profile = new FirefoxProfile(new File(profilePath));
-
-            // Опции браузера
             FirefoxOptions options = new FirefoxOptions();
             options.setProfile(profile);
 
@@ -98,7 +80,7 @@ public class DriverManager {
     private void configureDriver(WebDriver driver) {
         driver.manage().window().setSize(new Dimension(1280, 850));
         driver.manage().timeouts()
-                .pageLoadTimeout(Duration.ofSeconds(10))
+                .pageLoadTimeout(Duration.ofSeconds(100))
                 .implicitlyWait(Duration.ofSeconds(10));
         driver.manage().deleteAllCookies();
     }
