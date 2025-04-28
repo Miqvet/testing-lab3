@@ -53,6 +53,9 @@ class LoadTabsTest {
         }
         page.disableCookie();
         page.clickHotelsTab();
+        page.scrollToBottom();
+        HumanInteraction.randomDelay(1000,2000);
+        page.scrollToTop();
 
         driver.close();
     }
